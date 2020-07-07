@@ -10,8 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Logging;
+using WebApplication.Kernel;
 
 [assembly: FunctionsStartup(typeof(WebApplication.Program))]
+
 namespace WebApplication
 {
     public class Program : FunctionsStartup
@@ -28,9 +30,14 @@ namespace WebApplication
 
 			builder.Services.Add(new ServiceDescriptor(typeof(IHostEnvironment), hostingEnvironment));
 
-			
+			var configurationBuilder = new ConfigurationBuilder()
+				.Build();
+
+			builder.Services
+				.AddApplicationServices(configurationBuilder);
+				
 		}
-        
+
         
     }
 }
