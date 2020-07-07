@@ -25,13 +25,18 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
 
-- task: ArchiveFiles@2
+- task: DotNetCoreCLI@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
-    replaceExistingArchive: true
+    command: 'publish'
+    publishWebProjects: true
+
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+#     includeRootFolder: false
+#     archiveType: 'zip'
+#     archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
+#     replaceExistingArchive: true
 
 ## Add the below snippet at the end of your pipeline
 - task: AzureFunctionApp@1
