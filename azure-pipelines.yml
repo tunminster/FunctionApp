@@ -28,7 +28,8 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
-    publishWebProjects: true
+    projects: '**/*.csproj'
+    zipAfterPublish: false
 
 # - task: ArchiveFiles@2
 #   inputs:
