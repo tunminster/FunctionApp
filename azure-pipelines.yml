@@ -30,7 +30,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/FunctionApp1.csproj'
-    zipAfterPublish: false
+    zipAfterPublish: true
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
 # - task: DotNetCoreCLI@2
@@ -39,13 +39,13 @@ steps:
 #     projects: '**/FunctionApp1.csproj'
 #     zipAfterPublish: true
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/**/publish'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
-    replaceExistingArchive: true
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/**/publish'
+#     includeRootFolder: false
+#     archiveType: 'zip'
+#     archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
+#     replaceExistingArchive: true
 
 ## Add the below snippet at the end of your pipeline
 - task: AzureFunctionApp@1
@@ -54,4 +54,4 @@ steps:
     azureSubscription: $(azureSubscription)
     appType: functionApp
     appName: $(appName)
-    package: $(Build.ArtifactStagingDirectory)/*.zip    
+    package: $(Build.ArtifactStagingDirectory)/**/*.zip    
