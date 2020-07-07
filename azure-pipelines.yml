@@ -40,4 +40,4 @@ steps:
     azureSubscription: $(azureSubscription)
     appType: functionApp
     appName: $(appName)
-    package: $(System.ArtifactStagingDirectory)/*.zip    
+    package: $(System.ArtifactStagingDirectory)/**/*.zip    
