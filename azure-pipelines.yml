@@ -23,12 +23,12 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: '**/FunctionApp1.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
-    projects: '**/*.csproj'
+    projects: '**/FunctionApp1.csproj'
     zipAfterPublish: true
 
 # - task: ArchiveFiles@2
