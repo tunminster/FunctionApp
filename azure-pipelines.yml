@@ -24,13 +24,14 @@ steps:
   inputs:
     command: 'build'
     projects: '**/FunctionApp1.csproj'
-
+    
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: '**/FunctionApp1.csproj'
     zipAfterPublish: false
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
 # - task: DotNetCoreCLI@2
 #   inputs:
