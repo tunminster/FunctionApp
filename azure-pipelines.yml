@@ -1,0 +1,43 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  azureSubscription: 'Pay-As-You-Go (2359b88d-3130-4c42-a9fb-2455697edb51)'
+  appName: 'hnfunction'
+
+
+steps:
+
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
+    replaceExistingArchive: true
+
+## Add the below snippet at the end of your pipeline
+- task: AzureFunctionApp@1
+  displayName: Azure Function App Deploy
+  inputs:
+    azureSubscription: $(azureSubscription)
+    appType: functionApp
+    appName: $(appName)
+    package: $(Build.ArtifactStagingDirectory)/*.zip    
