@@ -25,6 +25,13 @@ steps:
     command: 'build'
     projects: '**/FunctionApp1.csproj'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/FunctionApp1.csproj'
+    zipAfterPublish: false
+
 # - task: DotNetCoreCLI@2
 #   inputs:
 #     command: 'publish'
@@ -33,7 +40,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/bin/release/netcoreapp3.0'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/**/publish'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/functionapp.zip'
