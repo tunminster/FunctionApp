@@ -9,18 +9,18 @@ using Microsoft.Extensions.Hosting.Internal;
 
 namespace FunctionApp1
 {
-    public class Program : FunctionsStartup
+    public class Program 
     {
-        public override void Configure(IFunctionsHostBuilder builder)
-		{
-			// var hostingEnvironment = new HostingEnvironment
-			// {
-			// 	ContentRootPath = Directory.GetCurrentDirectory(),
-			// 	ApplicationName = "Operation Functions",
-			// 	EnvironmentName = "Ring0"
-			// };
+        // public override void Configure(IFunctionsHostBuilder builder)
+		// {
+		// 	var hostingEnvironment = new HostingEnvironment
+		// 	{
+		// 		ContentRootPath = Directory.GetCurrentDirectory(),
+		// 		ApplicationName = "Operation Functions",
+		// 		EnvironmentName = "Ring0"
+		// 	};
 
-			// builder.Services.Add(new ServiceDescriptor(typeof(IHostEnvironment), hostingEnvironment));	
-		}
+		// 	builder.Services.Add(new ServiceDescriptor(typeof(IHostEnvironment), hostingEnvironment));	
+		// }
     }
 }
