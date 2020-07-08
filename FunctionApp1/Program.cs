@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 
-[assembly: FunctionsStartup(typeof(FunctionApp1.Program))]
+//[assembly: FunctionsStartup(typeof(FunctionApp1.Program))]
 
 namespace FunctionApp1
 {
